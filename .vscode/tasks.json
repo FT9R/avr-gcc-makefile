@@ -1,0 +1,29 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "shell",
+			"label": "C/C++: avr-gcc.exe build active file",
+			"command": "make build",
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		},
+		{
+			"type": "shell",
+			"label": "Build and flash current solution",
+			"command": "make flash",
+			"problemMatcher": [
+				"$gcc"
+			],
+			"group": {
+				"kind": "none",
+				"isDefault": true
+			}
+		}
+	]
+}

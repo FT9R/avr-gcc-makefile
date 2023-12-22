@@ -1,0 +1,9 @@
+{
+    "C_Cpp.default.compilerPath": "E:/AVR/bin/avr-gcc.exe",
+    "C_Cpp.default.cStandard": "gnu11",
+    "files.associations": {
+        "delay.h": "c",
+        "io.h": "c"
+    },
+    "C_Cpp.default.configurationProvider": "ms-vscode.makefile-tools"
+}
