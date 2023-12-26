@@ -20,6 +20,8 @@ OBJCOPY = avr-objcopy
 OBJDUMP = avr-objdump
 AVRSIZE = avr-size
 
+all: build
+
 $(OBJECTS_PATH)/$(PROJ_NAME).elf: $(OBJECTS)
 	@echo / 
 	@echo - Linking: $^
@@ -31,8 +33,6 @@ $(OBJECTS_PATH)/%.o: $(SOURCES_PATH)/%.c
 	@echo - Building file: $^
 	$(CC) $(COMPILER_OPTIONS) $(INCLUDES) -o $@ $^
 
-all: build
-	
 flash: build
 	@echo / 
 	@echo - MCU Programming
