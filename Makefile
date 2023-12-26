@@ -20,27 +20,25 @@ OBJCOPY = avr-objcopy
 OBJDUMP = avr-objdump
 AVRSIZE = avr-size
 
+RECIPE_SEPARATOR = '
+
 all: build
 
 $(OBJECTS_PATH)/$(PROJ_NAME).elf: $(OBJECTS)
-	@echo / 
-	@echo - Linking: $^
+	@echo $(RECIPE_SEPARATOR) Linking: $^
 	$(CC) -o $@ $^ -mmcu=$(MCU)
 	@$(AVRSIZE) $@
 
 $(OBJECTS_PATH)/%.o: $(SOURCES_PATH)/%.c
-	@echo / 
-	@echo - Building file: $^
+	@echo $(RECIPE_SEPARATOR) Building file: $^
 	$(CC) $(COMPILER_OPTIONS) $(INCLUDES) -o $@ $^
 
 flash: build
-	@echo / 
-	@echo - MCU Programming
+	@echo $(RECIPE_SEPARATOR) MCU Programming
 	avrdude -p$(DUDE_CHIP) -c$(PROGRAMMER) -b$(BAUDRATE) -Uflash:w:$(OBJECTS_PATH)/$(PROJ_NAME).hex:i
 
 build: clean $(OBJECTS_PATH)/$(PROJ_NAME).elf
-	@echo / 
-	@echo - Converting $(PROJ_NAME).elf to $(PROJ_NAME).hex
+	@echo $(RECIPE_SEPARATOR) Converting $(PROJ_NAME).elf to $(PROJ_NAME).hex
 	$(OBJCOPY) -O ihex -R .eeprom -R .fuse -R .lock -R .signature -R .user_signatures $(word 2, $^) $(patsubst %.elf,%.hex,$(word 2, $^))
 
 clean:
